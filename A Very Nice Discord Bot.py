@@ -16,7 +16,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    res1 = """Not funny. I didn't laugh. Your joke is so bad I would have preferred the joke went over my head and you gave up re-telling me the joke.
+    longtext1 = """Not funny. I didn't laugh. Your joke is so bad I would have preferred the joke went over my head and you gave up re-telling me the joke.
     To be honest this is a horrible attempt at trying to get a laugh out of me.
      Not a chuckle, not a hehe, not even a subtle burst of air out of my esophagus.
       Science says before you laugh your brain preps your face muscles but I didn't even feel the slightest twitch.
@@ -60,11 +60,11 @@ async def on_message(message):
             await message.channel.send(response)
             return
 
-  if message.channel.name not in '#hydra-song-requests':
+    if message.channel.name not in '#hydra-song-requests':
         if message.author.id in USER_IDS:
-            response = [f'shut up, {username}', 'be quiet.', 'shush.', res1]
+            response = [f'shut up, {username}', 'be quiet.', 'shush.', longtext1]
             await message.channel.send(random.choice(response))
-        if random.randint(1, 100) <= 3:
+        if random.randint(1, 100) <= 3:  # this is a 30% chance that the nerd emoji can be sent, this line can be deleted, or modified like 'if random.randint(1, 100) <= 5:'
             if message.author.id in NERD_EMOJI_HIM_USER_IDS:
                 response = ['https://tenor.com/view/avengers-endgame-thanos-nerd-alert-opinion-nerd-gif-26272469']
                 await message.channel.send(random.choice(response))
