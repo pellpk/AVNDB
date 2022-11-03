@@ -60,13 +60,14 @@ async def on_message(message):
             await message.channel.send(response)
             return
 
-    if message.author.id in USER_IDS:
-        response = [f'shut up, {username}', 'be quiet.', 'shush.', res1]
-        await message.channel.send(random.choice(response))
-    if random.randint(1, 100) <= 3:
-        if message.author.id in NERD_EMOJI_HIM_USER_IDS:
-            response = ['https://tenor.com/view/avengers-endgame-thanos-nerd-alert-opinion-nerd-gif-26272469']
+  if message.channel.name not in '#hydra-song-requests':
+        if message.author.id in USER_IDS:
+            response = [f'shut up, {username}', 'be quiet.', 'shush.', res1]
             await message.channel.send(random.choice(response))
-            await message.add_reaction('🤓')
+        if random.randint(1, 100) <= 3:
+            if message.author.id in NERD_EMOJI_HIM_USER_IDS:
+                response = ['https://tenor.com/view/avengers-endgame-thanos-nerd-alert-opinion-nerd-gif-26272469']
+                await message.channel.send(random.choice(response))
+                await message.add_reaction('🤓')
 
 client.run(TOKEN)
