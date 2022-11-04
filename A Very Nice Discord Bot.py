@@ -1,17 +1,17 @@
-import discord
-from discord.ext import commands
-import random
+import discord  # imports the discord package...
+from discord.ext import commands  #... and the commands d.py package
+import random  # imports the random package
 
-TOKEN = 'TOKEN HERE'
+TOKEN = 'token here'  # replace 'token here' with your bot's account token at 'https://discord.com/developers/application'/bot/copy token ( or reset token ) 
 
 intents = discord.Intents.default()
 intents.message_content = True
 client = commands.Bot(command_prefix='!', intents=intents)
 
 
-@client.event
+@client.event  
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print(f'We have logged in as {client.user}')
 
 
 @client.event
@@ -37,6 +37,7 @@ async def on_message(message):
                      but because of that you've wasted my time explaining the obscene integrity of your terrible attempt at comedy.
                       Now those kids are suffering with out meals and there's nobody to blame but you.
                        I hope you're happy with what you have done."""
+    blocked_channels = '966409881324253234, 930547097369976863'
     USER_IDS = {879004139361816596}  # IDs stored in a set
     NERD_EMOJI_HIM_USER_IDS = {839883479759585330, 266602020608278529, 736982476764741685, 520741459478052886}  # ids of people you wanna NERD EMOJI!!!!
     username = str(message.author).split('#')[0]
@@ -56,11 +57,11 @@ async def on_message(message):
             await message.channel.send(f'see ya, {username}!')
             return
         elif message.content.lower() == 'random':
-            response = f'this is your random number: {random.randrange(100000000000)}'
+            response = f'this is your random number: {random.randrange(9999)}'  # random number gen 1-9999
             await message.channel.send(response)
             return
 
-    if message.channel.name not in '#hydra-song-requests':
+    if message.channel.name not in blocked_channels:
         if message.author.id in USER_IDS:
             response = [f'shut up, {username}', 'be quiet.', 'shush.', longtext1]
             await message.channel.send(random.choice(response))
