@@ -2,7 +2,7 @@ import discord  # imports the discord package
 from discord.ext import commands  # imports the commands package from the discord package
 import random  # imports the random package
 
-TOKEN = 'TOKEN HERE'  # the account token of AVNDB, or in your instance, your bot 
+TOKEN = 'TOKEN HERE'  # the account token of your bot
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -15,7 +15,13 @@ async def on_ready():
 #  above code logs the bot online
 
 
-@bot.event
+@bot.command(name='random')
+async def name(ctx: commands.Context):
+    response = f'this is your random number: {random.randrange(9999)}'  # random number gen 1-9999
+    await ctx.send(response)
+
+
+@bot.listen()
 async def on_message(message):  # this code checks for messages, and if there is a message, it runs this code
     longtext1 = """Not funny. I didn't laugh. Your joke is so bad I would have preferred the joke went over my head and you gave up re-telling me the joke.
     To be honest this is a horrible attempt at trying to get a laugh out of me.
@@ -59,10 +65,6 @@ async def on_message(message):  # this code checks for messages, and if there is
         elif message.content.lower() == 'bye':
             await message.channel.send(f'see ya, {username}!')
             return
-        elif message.content.lower() == 'random':
-            response = f'this is your random number: {random.randrange(9999)}'  # random number gen 1-9999
-            await message.channel.send(response)
-            return
 
     if message.channel.name not in blocked_channels:
         if message.author.id in USER_IDS:
@@ -73,6 +75,5 @@ async def on_message(message):  # this code checks for messages, and if there is
                 response = ['https://tenor.com/view/avengers-endgame-thanos-nerd-alert-opinion-nerd-gif-26272469']
                 await message.channel.send(random.choice(response))
                 await message.add_reaction('🤓')
-
 
 bot.run(TOKEN)
