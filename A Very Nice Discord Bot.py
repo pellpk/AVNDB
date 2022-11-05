@@ -44,10 +44,10 @@ async def on_message(message):  # this code checks for messages, and if there is
                      but because of that you've wasted my time explaining the obscene integrity of your terrible attempt at comedy.
                       Now those kids are suffering with out meals and there's nobody to blame but you.
                        I hope you're happy with what you have done."""
-    channels = {1015067084893458503, 979044034070843393}  # channels the bot will use specific commands
-    blocked_channels = {966409881324253234, 930547097369976863}  # channels the bot will ignore
-    USER_IDS = {879004139361816596}  # IDs for people you want the bot to respond to with 'shut up' messages
-    NERD_EMOJI_HIM_USER_IDS = {839883479759585330, 266602020608278529, 736982476764741685, 520741459478052886}  # ids of people you want the bot to :nerd: react
+    channels = {}  # channel IDs the bot will use specific commands
+    blocked_channels = {}  # channel IDs the bot will ignore
+    USER_IDS = {}  # IDs for people you want the bot to respond to with 'shut up' messages
+    NERD_EMOJI_HIM_USER_IDS = {}  # IDs of people you want the bot to :nerd: react
     username = str(message.author)  # username variable
     user_message = str(message.content)  # user message variable
     channel = str(message.channel.name)  # channel variable
