@@ -1,21 +1,22 @@
-import discord  # imports the discord package...
-from discord.ext import commands  #... and the commands d.py package
+import discord  # imports the discord package
+from discord.ext import commands  # imports the commands package from the discord package
 import random  # imports the random package
 
-TOKEN = 'token here'  # replace 'token here' with your bot's account token at 'https://discord.com/developers/application'/bot/copy token ( or reset token ) 
+TOKEN = 'TOKEN HERE'  # the account token of AVNDB, or in your instance, your bot 
 
 intents = discord.Intents.default()
 intents.message_content = True
-client = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(command_prefix='!', intents=intents)
 
 
-@client.event  
+@bot.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
+    print(f'We have logged in as {bot.user}')  # prints a message that shows the bot is online.
+#  above code logs the bot online
 
 
-@client.event
-async def on_message(message):
+@bot.event
+async def on_message(message):  # this code checks for messages, and if there is a message, it runs this code
     longtext1 = """Not funny. I didn't laugh. Your joke is so bad I would have preferred the joke went over my head and you gave up re-telling me the joke.
     To be honest this is a horrible attempt at trying to get a laugh out of me.
      Not a chuckle, not a hehe, not even a subtle burst of air out of my esophagus.
@@ -37,20 +38,22 @@ async def on_message(message):
                      but because of that you've wasted my time explaining the obscene integrity of your terrible attempt at comedy.
                       Now those kids are suffering with out meals and there's nobody to blame but you.
                        I hope you're happy with what you have done."""
-    blocked_channels = '966409881324253234, 930547097369976863'
-    USER_IDS = {879004139361816596}  # IDs stored in a set
-    NERD_EMOJI_HIM_USER_IDS = {839883479759585330, 266602020608278529, 736982476764741685, 520741459478052886}  # ids of people you wanna NERD EMOJI!!!!
-    username = str(message.author).split('#')[0]
-    user_message = str(message.content)
-    channel = str(message.channel.name)
-    guild = str(message.guild.name)
-    print(f'{username}: {user_message} (posted in "#{channel}" in "{guild}")')
+    channels = {1015067084893458503, 979044034070843393}  # channels the bot will use specific commands
+    blocked_channels = {966409881324253234, 930547097369976863}  # channels the bot will ignore
+    USER_IDS = {879004139361816596}  # IDs for people you want the bot to respond to with 'shut up' messages
+    NERD_EMOJI_HIM_USER_IDS = {839883479759585330, 266602020608278529, 736982476764741685, 520741459478052886}  # ids of people you want the bot to :nerd: react
+    username = str(message.author)  # username variable
+    user_message = str(message.content)  # user message variable
+    channel = str(message.channel.name)  # channel variable
+    guild = str(message.guild.name)  # server variable (guild = server)
+    print(f'{username}: {user_message} (posted in "#{channel}" in "{guild}")')  # when a message is sent, it enters this in the terminal.
+    #  i.e "pellko!#6849: Hello. (posted in #fortnite in Fortnite Official)
 
-    if message.author == client.user:
-        return
+    if message.author == bot.user:
+        return  # ignores below code if message author is the bot
 
-    if message.channel.name == 'alabama' or message.channel.name == 'ai':
-        if message.content.lower() == 'hello' or message.content.lower() == 'hi':
+    if message.channel.name in channels:  # if channel name of a message is in the channels variable, run below code:
+        if message.content.lower() == 'hello' or message.content.lower() == 'hi':   # if message = hi, hello
             await message.channel.send(f'hello, {username}!')
             return
         elif message.content.lower() == 'bye':
@@ -71,4 +74,5 @@ async def on_message(message):
                 await message.channel.send(random.choice(response))
                 await message.add_reaction('🤓')
 
-client.run(TOKEN)
+
+bot.run(TOKEN)
