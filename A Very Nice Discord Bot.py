@@ -38,9 +38,8 @@ async def gaytest(ctx: commands.Context):
 
             else:
                 await ctx.channel.send('english, man, do you speak it? (Invalid answer, Yes/No only)')
-
-
-
+                
+                
 @bot.command(name='random')
 async def name(ctx: commands.Context):
     response = f'this is your random number: {random.randrange(9999)}'  # random number gen 1-9999
