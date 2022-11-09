@@ -15,6 +15,32 @@ async def on_ready():
 #  above code logs the bot online
 
 
+@bot.command()
+async def gaytest(ctx: commands.Context):
+    while True:
+        await ctx.channel.send('Are you Gay? (yes/no only)')
+
+        try:
+            message = await bot.wait_for("message", check=lambda m: m.author == ctx.author and m.channel, timeout=30.0)
+
+        except asyncio.TimeoutError:
+            await ctx.channel.send('You ignored me? :(')
+            break
+
+        else:
+            if message.content.lower() == 'yes':
+                await ctx.channel.send('You are Gay!')
+                break
+
+            elif message.content.lower() == 'no':
+                await ctx.channel.send('You are not gay.')
+                break
+
+            else:
+                await ctx.channel.send('english, man, do you speak it? (Invalid answer, Yes/No only)')
+
+
+
 @bot.command(name='random')
 async def name(ctx: commands.Context):
     response = f'this is your random number: {random.randrange(9999)}'  # random number gen 1-9999
