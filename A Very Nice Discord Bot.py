@@ -1,10 +1,9 @@
 import asyncio
-
 import discord
 from discord.ext import commands
 import random
 
-TOKEN = 'MTAzMTc2NDM4NTc4MzM2NTY3Mw.GgcDRe.o-Hc0jr0x9We0idT8vSzxq-mkvErP__iItH5G4'  # the account token of AVNDB
+TOKEN = 'token'  # the account token of AVNDB
 
 intents = discord.Intents.default()
 intents.message_content = True
